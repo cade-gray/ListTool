@@ -1,0 +1,60 @@
+<html>
+  <style>
+    html {
+      height: 100%;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+    #textbox {
+      width: 50%;
+      height: 25%;
+    }
+    #listOutput {
+      width: 50%;
+      height: 25%;
+    }
+    button {
+      width: 10%;
+      height: 10%;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h1>Generate Comma Seperated List of Strings Wrapped in Single Quotes</h1>
+      <h2>Input</h2>
+      <textarea id="textbox"></textarea>
+      <h2>Output</h2>
+      <textarea id="listOutput" readonly=""></textarea>
+      <button onclick="copyToClipboard()">Copy to Clipboard</button>
+    </div>
+  </body>
+  <script>
+    var textbox = document.getElementById("textbox");
+    var listOutput = document.getElementById("listOutput");
+    var inputText;
+    var textArray;
+    var stringifiedTextArray;
+    var modTextArray;
+    var list;
+    textbox.addEventListener("input", () => {
+      inputText = textbox.value;
+      textArray = inputText.split("\n");
+      // TODO: Add condion for empty value to disregard quotes and commas
+      modTextArray = textArray.map((item) => `'${item}',`);
+      list = modTextArray.join("\n");
+      //Trim last comma off of list
+      trimmedList = list.substring(0, list.length - 1);
+      listOutput.value = trimmedList;
+    });
+
+    function copyToClipboard() {
+      let text = document.getElementById("listOutput").value;
+      navigator.clipboard.writeText(text);
+    }
+  </script>
+</html>
