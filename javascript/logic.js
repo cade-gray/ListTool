@@ -1,23 +1,26 @@
+// Inputs
 var textbox = document.getElementById("textbox");
 var listOutput = document.getElementById("listOutput");
+var wrapperRadios = document.getElementsByName("wrapper");
+var stripRadios = document.getElementsByName("strip");
+var commaBeforeNLRadios = document.getElementsByName("commaBeforeNL");
+var customWrapper = document.getElementById("customWrapper");
+var selectedWrapper = "'";
+var wrapperL = document.getElementById("wrapperL");
+var wrapperR = document.getElementById("wrapperR");
+// Variables
 var inputText;
 var textArray;
 var stringifiedTextArray;
 var modTextArray;
 var list;
-var wrapperRadios = document.getElementsByName("wrapper");
-var stripRadios = document.getElementsByName("strip");
-var selectedWrapper = "'";
-var wrapperL = document.getElementById("wrapperL");
-var wrapperR = document.getElementById("wrapperR");
 var wrapperLval;
 var wrapperRval;
 var isCustomWrapper = false;
-/*
-    For stripState, there should only be 2 possible options. 'none' or 'whitespace'.
-    */
-var stripState = "none";
-var customStripText;
+// States
+var stripState = "none"; // For stripState, there should only be 2 possible options. 'none' or 'whitespace'
+var commaBeforeNLState = true; // Default to true, meaning a comma will be added before the newline character
+
 // Add Event Listeners
 textbox.addEventListener("input", () => {
   textboxUpdate();
@@ -41,17 +44,25 @@ function textboxUpdate() {
   textArray = textArray.map((item) => stripItem(item)); // Strip out whitespace if selected
   if (!isCustomWrapper) {
     textArray = textArray.map(
-      (item) => `${selectedWrapper}${item}${selectedWrapper},`
+      (item) => `${selectedWrapper}${item}${selectedWrapper}`
     );
   } else {
     //Grabbing most recent wrapper vals before generating.
     wrapperLval = document.getElementById("wrapperL").value;
     wrapperRval = document.getElementById("wrapperR").value;
-    textArray = textArray.map((item) => `${wrapperLval}${item}${wrapperRval},`);
+    textArray = textArray.map((item) => `${wrapperLval}${item}${wrapperRval}`);
   }
-  list = textArray.join("\n");
+  var beforeNL = "";
+  if (commaBeforeNLState) {
+    beforeNL = ",";
+  }
+  list = textArray.join(beforeNL + "\n");
   //Trim last comma off of list
-  trimmedList = list.substring(0, list.length - 1);
+  if (list.endsWith(",") && (!isCustomWrapper || wrapperRval !== ",")) {
+    trimmedList = list.substring(0, list.length - 1);
+  } else {
+    trimmedList = list; // No trimming needed
+  }
   listOutput.value = trimmedList;
 }
 
@@ -104,6 +115,18 @@ for (var i = 0; i < stripRadios.length; i++) {
         break;
       default:
         break;
+    }
+    textboxUpdate();
+  };
+}
+
+for (var i = 0; i < commaBeforeNLRadios.length; i++) {
+  commaBeforeNLRadios[i].onclick = function () {
+    var commaBeforeNLId = this.id;
+    if (commaBeforeNLId === "true") {
+      commaBeforeNLState = true;
+    } else {
+      commaBeforeNLState = false;
     }
     textboxUpdate();
   };

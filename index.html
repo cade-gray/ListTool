@@ -28,12 +28,24 @@
           <input type="radio" name="strip" id="whitespace" />
           <label for="whitespace">White Space</label>
         </div>
+        <div class="commaBeforeNLContainer">
+          <h3>Comma Before New Line</h3>
+          <input type="radio" name="commaBeforeNL" id="true" checked="true" />
+          <label for="true">True</label>
+          <input type="radio" name="commaBeforeNL" id="false" />
+          <label for="false">False</label>
+        </div>
       </div>
       <textarea id="textbox"></textarea>
       <h2>Output</h2>
       <div class="configContainer"></div>
       <textarea id="listOutput" readonly=""></textarea>
       <button onclick="copyToClipboard()">Copy to Clipboard</button>
+      <br/>
+      <footer>
+        <p>Created by <a href="https://cadegray.dev">Cade Gray</a></p>
+        <p>Source code available on <a href="https://github.com/cade-gray/ListTool">GitHub</a></p>
+      </footer>
     </div>
   </body>
   <script src="./javascript/logic.js"></script>
