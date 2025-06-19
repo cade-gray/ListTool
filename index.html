@@ -18,17 +18,20 @@
           <label for="doubleq">Double Quote</label>
           <input type="radio" name="wrapper" id="customWrapper" />
           <label for="customWrapper">Custom</label>
-          <input type="text" id="wrapperL" size="3" />
+          <input type="text" id="wrapperL" />
           <label for="Custom">Left Wrapper</label>
-          <input type="text" id="wrapperR" size="3" />
+          <input type="text" id="wrapperR" />
           <label for="Custom">Right Wrapper</label>
         </div>
         <div class="stripContainer">
           <h3>Strip Out</h3>
           <input type="radio" name="strip" id="none" checked="true" />
-          <label for="doubleq">None</label>
+          <label for="none">None</label>
           <input type="radio" name="strip" id="whitespace" />
           <label for="whitespace">White Space</label>
+          <input type="radio" name="strip" id="custom" />
+          <label for="custom">Custom</label>
+          <input type="text" id="customStripText" />
         </div>
         <div class="itemSeparatorContainer">
           <h3>Item Separator</h3>
@@ -38,7 +41,7 @@
           <label for="true">None</label>
           <input type="radio" name="itemSeparator" id="custom" />
           <label for="false">Custom</label>
-          <input type="text" id="customItemSeparator" size="3" />
+          <input type="text" id="customItemSeparator" />
         <input type="checkbox" name="newLineCheck" id="newLineCheck" checked="true" />
           <label for="newLineCheck">New Line</label>
         </div>

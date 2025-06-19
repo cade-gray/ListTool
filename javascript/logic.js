@@ -8,6 +8,7 @@ var customWrapper = document.getElementById("customWrapper");
 var selectedWrapper = "'";
 var wrapperL = document.getElementById("wrapperL");
 var wrapperR = document.getElementById("wrapperR");
+var customStripText = document.getElementById("customStripText");
 var customItemSeparator = document.getElementById("customItemSeparator");
 var newLineCheck = document.getElementById("newLineCheck");
 
@@ -36,6 +37,10 @@ wrapperL.addEventListener("input", () => {
 });
 
 wrapperR.addEventListener("input", () => {
+  textboxUpdate();
+});
+
+customStripText.addEventListener("input", () => {
   textboxUpdate();
 });
 
@@ -83,6 +88,9 @@ for (var i = 0; i < stripRadios.length; i++) {
         break;
       case "whitespace":
         stripState = "whitespace";
+        break;
+      case "custom":
+        stripState = "custom";
         break;
       default:
         break;
@@ -145,8 +153,13 @@ function textboxUpdate() {
 function stripItem(item) {
   if (stripState == "none") {
     return item; // do nothing
-  } else {
+  } 
+  else if (stripState == "whitespace"){
     item = item.replace(/\s/g, "");
+    return item;
+  } 
+  else if (stripState == "custom") {
+    item = item.replace(customStripText.value, "");
     return item;
   }
 }
