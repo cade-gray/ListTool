@@ -7,6 +7,8 @@
     <div class="container">
       <h1>List Tool</h1>
       <h2>Input</h2>
+      <textarea id="textbox"></textarea>
+      <h2>Transform</h2>
       <div class="configContainer">
         <div class="wrapperContainer">
           <h3>Wrapper</h3>
@@ -28,17 +30,20 @@
           <input type="radio" name="strip" id="whitespace" />
           <label for="whitespace">White Space</label>
         </div>
-        <div class="commaBeforeNLContainer">
-          <h3>Comma Before New Line</h3>
-          <input type="radio" name="commaBeforeNL" id="true" checked="true" />
-          <label for="true">True</label>
-          <input type="radio" name="commaBeforeNL" id="false" />
-          <label for="false">False</label>
+        <div class="itemSeparatorContainer">
+          <h3>Item Separator</h3>
+          <input type="radio" name="itemSeparator" id="comma" checked="true" />
+          <label for="true">Comma</label>
+          <input type="radio" name="itemSeparator" id="none" />
+          <label for="true">None</label>
+          <input type="radio" name="itemSeparator" id="custom" />
+          <label for="false">Custom</label>
+          <input type="text" id="customItemSeparator" size="3" />
+        <input type="checkbox" name="newLineCheck" id="newLineCheck" checked="true" />
+          <label for="newLineCheck">New Line</label>
         </div>
       </div>
-      <textarea id="textbox"></textarea>
       <h2>Output</h2>
-      <div class="configContainer"></div>
       <textarea id="listOutput" readonly=""></textarea>
       <button onclick="copyToClipboard()">Copy to Clipboard</button>
       <br/>
