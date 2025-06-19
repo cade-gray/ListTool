@@ -142,7 +142,7 @@ function textboxUpdate() {
   var newlineChar = newLineCheck.checked ? "\n" : "";
   list = textArray.join(itemSeparatorVal + newlineChar);
   //Trim last item seperator off of list
-  if (list.endsWith(itemSeparatorVal) && (!isCustomWrapper || wrapperRval !== itemSeparatorVal)) {
+  if (list.endsWith(itemSeparatorVal) && (!isCustomWrapper || wrapperRval !== itemSeparatorVal) && itemSeparatorVal !== "") {
     trimmedList = list.substring(0, list.length - 1);
   } else {
     trimmedList = list; // No trimming needed
